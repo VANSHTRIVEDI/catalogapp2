@@ -2,10 +2,26 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class CatalogModel {
-  static List<Item> items=CatalogModel.items;
+  
+  static final catModel=CatalogModel._internal();
+ CatalogModel._internal() ;
+factory CatalogModel()=>catModel;
+
+
+
+  static List<Item> items = CatalogModel.items;
+
+  //get item my id
+
+      Item getById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+
+  //
+  Item getByPositon(int pos) => items[pos];
 }
 
 class Item {
+
   final int id;
   final String name;
   final String desc;

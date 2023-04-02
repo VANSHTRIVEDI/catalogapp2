@@ -8,7 +8,6 @@ import 'package:catalogapp/widgets/home_widgets/catalog_header.dart';
 import 'package:catalogapp/widgets/home_widgets/catalog_image.dart';
 import 'package:catalogapp/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../widgets/home_widgets/catalog_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
-    await Future.delayed(Duration(seconds: 4));
+   
     final catalogJson =
         await rootBundle.loadString("assets/files/catalog.json");
     final decodedData = jsonDecode(catalogJson);
@@ -42,11 +41,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyTheme.creamColor,
+        backgroundColor: context.canvasColor,
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-          backgroundColor: MyTheme.darkBluishColor,
-          child: Icon(CupertinoIcons.cart),
+          backgroundColor: Theme.of(context).buttonColor,
+          //you will not find buttoncolor directly by 
+          //context.canvascolor
+          //vx shortform for it
+
+          child: Icon(CupertinoIcons.cart,color: Colors.white,),
         ),
         body: SafeArea(
           child: Container(
